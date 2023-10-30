@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.joicelima.placeservice.api.PlaceRequest;
+import com.joicelima.placeservice.api.PlaceResponse;
 import com.joicelima.placeservice.domain.Place;
 import com.joicelima.placeservice.domain.PlaceService;
 
@@ -28,8 +30,8 @@ public class PlaceController {
 
 
     @PostMapping
-    public ResponseEntity<Mono<Place>> create(@RequestBody Place place){
-        var createdPlace = placeService.create(place);
+    public ResponseEntity<Mono<PlaceResponse>> create(@RequestBody PlaceRequest request){
+        var createdPlace = placeService.create(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdPlace);
     }
 
